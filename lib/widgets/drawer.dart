@@ -10,22 +10,22 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          _DrawerHeader(),
+          const _DrawerHeader(),
           ListTile(
             leading: const Icon(Icons.pages_outlined),
-            title: Text('Home'),
+            title: const Text('Home'),
             onTap: () {
               Navigator.pushReplacementNamed(context, HomeScreen.routerName);
             },
           ),
           ListTile(
             leading: const Icon(Icons.people_outlined),
-            title: Text('People'),
+            title: const Text('People'),
             onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.settings_outlined),
-            title: Text('Settings'),
+            title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushReplacementNamed(
@@ -46,10 +46,10 @@ class _DrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DrawerHeader(
-      child: Container(),
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/menu-img.jpg'), fit: BoxFit.cover)),
+      child: Container(),
     );
   }
 }
