@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_app_plantilla/preferences/preferences.dart';
-
+import 'package:preferences_app_plantilla/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'screens/screens.dart';
 
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); //este widget nos asegura que se han establecido unos canales primitivos a bajo nivel para ejecutar el metodo asincrono para inicializar
   await Preferences.init();
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+        create: (_) => ThemeProvider(isDarkMode: Preferences.isDarkMode))
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +28,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routerName: (_) => const HomeScreen(),
         SettingsScreen.routerName: (_) => const SettingsScreen()
       },
+      theme: Provider.of<ThemeProvider>(context).currentTheme,
     );
   }
 }
